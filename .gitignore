@@ -1,0 +1,24 @@
+# Binaries
+terraform-provider-bearmq
+dist/
+.devplugin/
+
+PUBLISHING.md
+# Terraform working files
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+!examples/**/*.tfvars
+
+# Editors
+.idea/
+.vscode/
+
+# Go
+*.test
+*.out
