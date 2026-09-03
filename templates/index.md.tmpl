@@ -1,0 +1,42 @@
+---
+page_title: "BearMQ Provider"
+description: |-
+  Manage BearMQ virtual hosts, exchanges, queues and bindings as code.
+---
+
+# BearMQ Provider
+
+The BearMQ provider manages messaging topology on a [BearMQ](https://github.com/nuricanozturk01) broker:
+virtual hosts, exchanges, queues and bindings. It talks to the BearMQ management API over HTTP.
+
+## Example Usage
+
+{{ tffile "examples/provider/provider.tf" }}
+
+## Authentication
+
+Provide **exactly one** of:
+
+| Credential | Header sent | Config field | Environment variable |
+|-----------|-------------|--------------|----------------------|
+| Messaging API key | `X-API-KEY` | `api_key` | `BEARMQ_API_KEY` |
+| JWT bearer token | `Authorization: Bearer` | `token` | `BEARMQ_TOKEN` |
+
+The endpoint resolves from `endpoint`, then `BEARMQ_ENDPOINT`, then `http://localhost:3333`.
+Setting both `api_key` and `token`, or neither, is a configuration error.
+
+Credentials are best supplied through environment variables so they never land in state or VCS:
+
+```shell
+export BEARMQ_ENDPOINT="https://mq.example.com"
+export BEARMQ_API_KEY="..."
+```
+
+## Full Topology Example
+
+A virtual host with a topic exchange, a TTL work queue that dead-letters into a
+second queue, and the bindings that wire them together:
+
+{{ tffile "examples/full-topology/main.tf" }}
+
+{{ .SchemaMarkdown | trimspace }}
