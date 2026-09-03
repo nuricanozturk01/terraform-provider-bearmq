@@ -22,11 +22,11 @@ terraform {
 }
 
 # Credentials and endpoint are normally supplied via environment variables:
-#   BEARMQ_ENDPOINT  (default http://localhost:3333)
+#   BEARMQ_ENDPOINT  the BearMQ instance URL
 #   BEARMQ_API_KEY   (Settings -> Messaging API key, sent as X-API-KEY)
 # or BEARMQ_TOKEN    (a JWT bearer token)
 provider "bearmq" {
-  endpoint = "http://localhost:3333"
+  endpoint = "https://api.bearmq.com"
   # api_key = var.bearmq_api_key
 }
 ```
@@ -40,13 +40,14 @@ Provide **exactly one** of:
 | Messaging API key | `X-API-KEY` | `api_key` | `BEARMQ_API_KEY` |
 | JWT bearer token | `Authorization: Bearer` | `token` | `BEARMQ_TOKEN` |
 
-The endpoint resolves from `endpoint`, then `BEARMQ_ENDPOINT`, then `http://localhost:3333`.
+The endpoint resolves from the `endpoint` argument, then the `BEARMQ_ENDPOINT`
+environment variable (a local default is used only when neither is set).
 Setting both `api_key` and `token`, or neither, is a configuration error.
 
 Credentials are best supplied through environment variables so they never land in state or VCS:
 
 ```shell
-export BEARMQ_ENDPOINT="https://mq.example.com"
+export BEARMQ_ENDPOINT="https://api.bearmq.com"
 export BEARMQ_API_KEY="..."
 ```
 
@@ -142,6 +143,6 @@ output "vhost_username" {
 ### Optional
 
 - `api_key` (String, Sensitive) BearMQ messaging API key, sent as `X-API-KEY`. Falls back to the `BEARMQ_API_KEY` environment variable. Exactly one of `api_key` or `token` is required.
-- `endpoint` (String) Base URL of the BearMQ instance. Falls back to the `BEARMQ_ENDPOINT` environment variable, then `http://localhost:3333`.
+- `endpoint` (String) Base URL of the BearMQ instance, e.g. `https://api.bearmq.com`. Falls back to the `BEARMQ_ENDPOINT` environment variable, then a local development default.
 - `insecure` (Boolean) Skip TLS certificate verification. Falls back to the `BEARMQ_INSECURE` environment variable. Do not use outside development.
 - `token` (String, Sensitive) JWT bearer token, sent as `Authorization: Bearer`. Falls back to the `BEARMQ_TOKEN` environment variable. Exactly one of `api_key` or `token` is required.

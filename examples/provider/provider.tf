@@ -8,10 +8,10 @@ terraform {
 }
 
 # Credentials and endpoint are normally supplied via environment variables:
-#   BEARMQ_ENDPOINT  (default http://localhost:3333)
+#   BEARMQ_ENDPOINT  the BearMQ instance URL
 #   BEARMQ_API_KEY   (Settings -> Messaging API key, sent as X-API-KEY)
 # or BEARMQ_TOKEN    (a JWT bearer token)
 provider "bearmq" {
-  endpoint = "http://localhost:3333"
+  endpoint = "https://api.bearmq.com"
   # api_key = var.bearmq_api_key
 }

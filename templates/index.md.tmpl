@@ -22,13 +22,14 @@ Provide **exactly one** of:
 | Messaging API key | `X-API-KEY` | `api_key` | `BEARMQ_API_KEY` |
 | JWT bearer token | `Authorization: Bearer` | `token` | `BEARMQ_TOKEN` |
 
-The endpoint resolves from `endpoint`, then `BEARMQ_ENDPOINT`, then `http://localhost:3333`.
+The endpoint resolves from the `endpoint` argument, then the `BEARMQ_ENDPOINT`
+environment variable (a local default is used only when neither is set).
 Setting both `api_key` and `token`, or neither, is a configuration error.
 
 Credentials are best supplied through environment variables so they never land in state or VCS:
 
 ```shell
-export BEARMQ_ENDPOINT="https://mq.example.com"
+export BEARMQ_ENDPOINT="https://api.bearmq.com"
 export BEARMQ_API_KEY="..."
 ```
 

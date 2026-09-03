@@ -48,8 +48,8 @@ func (p *bearmqProvider) Schema(_ context.Context, _ provider.SchemaRequest, res
 		Attributes: map[string]schema.Attribute{
 			"endpoint": schema.StringAttribute{
 				Optional: true,
-				MarkdownDescription: "Base URL of the BearMQ instance. Falls back to the `BEARMQ_ENDPOINT` " +
-					"environment variable, then `" + defaultEndpoint + "`.",
+				MarkdownDescription: "Base URL of the BearMQ instance, e.g. `https://api.bearmq.com`. Falls back " +
+					"to the `BEARMQ_ENDPOINT` environment variable, then a local development default.",
 			},
 			"api_key": schema.StringAttribute{
 				Optional:  true,
