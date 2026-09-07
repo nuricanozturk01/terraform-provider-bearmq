@@ -127,7 +127,9 @@ resource "bearmq_binding" "paid_dead" {
   routing_key      = "orders.paid.dead"
 }
 
-output "amqp_url" {
+# Broker is TLS-only. Build the full client URI as:
+#   amqps://${bearmq_vhost.orders.username}:<password>@<broker-host>:5671/${bearmq_vhost.orders.name}
+output "amqp_host_hint" {
   value     = bearmq_vhost.orders.url
   sensitive = true
 }

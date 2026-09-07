@@ -36,10 +36,10 @@ output "orders_amqp_url" {
 ### Read-Only
 
 - `created_at` (String) RFC 3339 creation timestamp.
-- `domain` (String) Host portion of the generated connection URI.
+- `domain` (String) Per-vhost host label. Broker endpoint is TLS-only: `amqps://<username>:<password>@<broker-host>:5671/<name>`.
 - `id` (String) Server-assigned virtual host identifier.
 - `password` (String, Sensitive) AMQP password. Only returned at creation time; blank after import.
-- `url` (String) Full AMQP connection URI.
+- `url` (String) Connection hint echoed by the broker. Assemble the client URI as `amqps://<username>:<password>@<broker-host>:5671/<name>` (AMQPS, port 5671).
 - `username` (String) AMQP username for this virtual host.
 
 ## Import

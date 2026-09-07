@@ -34,7 +34,7 @@ output "orders_vhost_id" {
 ### Read-Only
 
 - `created_at` (String) RFC 3339 creation timestamp.
-- `domain` (String) Host portion of the connection URI.
+- `domain` (String) Per-vhost host label. Broker endpoint is TLS-only: `amqps://<username>:<password>@<broker-host>:5671/<name>`.
 - `status` (String) Lifecycle status.
-- `url` (String) Full AMQP connection URI.
+- `url` (String) Connection hint echoed by the broker. Assemble the client URI as `amqps://<username>:<password>@<broker-host>:5671/<name>` (AMQPS, port 5671).
 - `username` (String) AMQP username.
