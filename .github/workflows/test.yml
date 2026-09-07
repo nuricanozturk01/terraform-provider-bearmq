@@ -56,6 +56,8 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
-      - uses: golangci/golangci-lint-action@v6
+      # v8 runs on Node 24 (v6 was Node 20, now deprecated) and expects a
+      # golangci-lint v2 config — see .golangci.yml (version: "2").
+      - uses: golangci/golangci-lint-action@v8
         with:
-          version: latest
+          version: v2.4.0
