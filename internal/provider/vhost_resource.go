@@ -77,8 +77,8 @@ func (r *vhostResource) Schema(_ context.Context, _ resource.SchemaRequest, resp
 			},
 			"username":   computedString("AMQP username for this virtual host."),
 			"password":   computedSensitiveString("AMQP password. Only returned at creation time; blank after import."),
-			"domain":     computedString("Host portion of the generated connection URI."),
-			"url":        computedString("Full AMQP connection URI."),
+			"domain":     computedString("Per-vhost host label. The broker endpoint is TLS-only: `amqps://<username>:<password>@<broker-host>:5671/<name>`."),
+			"url":        computedString("Connection hint echoed by the broker. Assemble the client URI as `amqps://<username>:<password>@<broker-host>:5671/<name>` (AMQPS, port 5671)."),
 			"created_at": computedString("RFC 3339 creation timestamp."),
 		},
 	}

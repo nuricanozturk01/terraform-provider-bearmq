@@ -1,3 +1,4 @@
+// Command terraform-provider-bearmq is the Terraform provider plugin entrypoint for BearMQ.
 package main
 
 import (
